@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/small_margin"
-    android:background="@drawable/background_item"
-    android:theme="@style/CardView.Dark">
+    android:background="@drawable/background_item">
 
     <ImageView
         android:id="@+id/item_beer_image"
         android:layout_width="60dp"
         android:layout_height="120dp"
         android:layout_margin="@dimen/small_margin"
-        android:contentDescription="beer"
+        android:background="@color/colorItemBackground"
+        android:contentDescription="@string/beer"
         android:src="@drawable/ic_empty_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
-        android:textColor="@color/black"
+        android:background="@color/colorItemBackground"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/item_beer_image"
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:background="@color/colorItemBackground"
         app:layout_constraintBottom_toBottomOf="@+id/item_beer_title"
         app:layout_constraintStart_toEndOf="@+id/item_beer_title"
         tools:text="4%" />
@@ -45,6 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/margin"
+        android:background="@color/colorItemBackground"
         app:layout_constraintBottom_toTopOf="@+id/item_beer_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/item_beer_image"
@@ -56,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
+        android:background="@color/colorItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/item_beer_image"
         tools:text="01/1970" />
