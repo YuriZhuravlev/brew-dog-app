@@ -1,4 +1,4 @@
-package com.example.brewdogapp.net
+package com.example.brewdogapp.storage.net
 
 import com.example.brewdogapp.model.Beer
 import io.reactivex.rxjava3.core.Single
@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface PunkApi {
     @GET("beers")
-    fun getAllBeers(@Query("page") page: Int = 1): Single<List<Beer>>
+    fun getAllBeers(@Query("page") page: Int): Single<List<Beer>>
 
     /*
         Maybe:

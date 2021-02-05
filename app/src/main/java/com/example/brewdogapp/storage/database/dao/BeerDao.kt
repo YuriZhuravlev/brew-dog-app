@@ -1,4 +1,4 @@
-package com.example.brewdogapp.database.dao
+package com.example.brewdogapp.storage.database.dao
 
 import androidx.room.*
 import com.example.brewdogapp.model.Beer
