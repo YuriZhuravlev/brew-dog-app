@@ -28,29 +28,53 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         setSupportActionBar(toolbar)
     }
 
-
     override fun onResume() {
         super.onResume()
         mBtnAbout.setOnClickListener { mPresenter.clickBtnAbout(MainMenuItem.ABOUT) }
-        mBtnBeers.setOnClickListener { mPresenter.clickBtnAbout(MainMenuItem.BEERS) }
-        mBtnFavorites.setOnClickListener { mPresenter.clickBtnAbout(MainMenuItem.FAVORITES) }
-        mBtnFilters.setOnClickListener { mPresenter.clickBtnAbout(MainMenuItem.FILTERS) }
+        mBtnBeers.setOnClickListener { mPresenter.clickBtnBeers(MainMenuItem.BEERS) }
+        mBtnFavorites.setOnClickListener { mPresenter.clickBtnFavorites(MainMenuItem.FAVORITES) }
+        mBtnFilters.setOnClickListener { mPresenter.clickBtnFilters(MainMenuItem.FILTERS) }
+        mPresenter.resume()
     }
 
-    override fun clickBtnAbout() {
-
+    override fun clickBtnAbout(previousItem: MainMenuItem) {
+        if (previousItem != MainMenuItem.ABOUT) {
+            getButton(previousItem).isEnabled = true
+            mBtnAbout.isEnabled = false
+        }
     }
 
-    override fun clickBtnBeers() {
+    override fun clickBtnBeers(previousItem: MainMenuItem) {
+        if (previousItem != MainMenuItem.BEERS) {
+            getButton(previousItem).isEnabled = true
+            mBtnBeers.isEnabled = false
+        }
     }
 
-    override fun clickBtnFavorites() {
+    override fun clickBtnFavorites(previousItem: MainMenuItem) {
+        if (previousItem != MainMenuItem.FAVORITES) {
+            getButton(previousItem).isEnabled = true
+            mBtnFavorites.isEnabled = false
+        }
     }
 
-    override fun clickBtnFilters() {
+    override fun clickBtnFilters(previousItem: MainMenuItem) {
+        if (previousItem != MainMenuItem.FILTERS) {
+            getButton(previousItem).isEnabled = true
+            mBtnFilters.isEnabled = false
+        }
     }
 
-    override fun onAttach(item: MainMenuItem) {
+    override fun onResume(item: MainMenuItem) {
+        getButton(item).isEnabled = false
+    }
 
+    private fun getButton(item: MainMenuItem): Button {
+        return when (item) {
+            MainMenuItem.BEERS -> mBtnBeers
+            MainMenuItem.FILTERS -> mBtnFilters
+            MainMenuItem.FAVORITES -> mBtnFavorites
+            MainMenuItem.ABOUT -> mBtnAbout
+        }
     }
 }

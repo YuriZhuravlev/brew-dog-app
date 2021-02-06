@@ -6,9 +6,9 @@ import moxy.viewstate.strategy.alias.SingleState
 
 @SingleState
 interface IMainView : MvpView {
-    fun clickBtnAbout()
-    fun clickBtnBeers()
-    fun clickBtnFavorites()
-    fun clickBtnFilters()
-    fun onAttach(item: MainMenuItem)
+    fun clickBtnAbout(previousItem: MainMenuItem)
+    fun clickBtnBeers(previousItem: MainMenuItem)
+    fun clickBtnFavorites(previousItem: MainMenuItem)
+    fun clickBtnFilters(previousItem: MainMenuItem)
+    fun onResume(item: MainMenuItem)
 }
