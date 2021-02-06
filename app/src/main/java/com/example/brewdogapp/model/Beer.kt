@@ -1,6 +1,7 @@
 package com.example.brewdogapp.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "beer")
@@ -60,6 +61,7 @@ data class Beer(
     @field:SerializedName("ingredients")
     val ingredients: Ingredients? = null,
 
+    @PrimaryKey
     @field:SerializedName("id")
     val id: Int? = null,
 
