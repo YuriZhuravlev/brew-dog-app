@@ -24,14 +24,14 @@
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/fragment_tabs"
+        app:layout_constraintBottom_toTopOf="@id/activity_main_tabs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_toolbar"
         tools:context=".MainActivity" />
 
     <LinearLayout
-        android:id="@+id/fragment_tabs"
+        android:id="@+id/activity_main_tabs"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:gravity="center_horizontal"
@@ -39,18 +39,21 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
+            android:id="@+id/activity_main_btn_beers"
             style="@style/Theme.BrewDogApp.MenuButton"
             android:background="@color/colorPrimary"
             android:drawableTop="@drawable/ic_info"
             android:text="@string/beers" />
 
         <Button
+            android:id="@+id/activity_main_btn_filters"
             style="@style/Theme.BrewDogApp.MenuButton"
             android:background="@color/colorPrimary"
             android:drawableTop="@drawable/ic_filters"
             android:text="@string/filters" />
 
         <Button
+            android:id="@+id/activity_main_btn_favorites"
             style="@style/Theme.BrewDogApp.MenuButton"
             android:background="@color/colorPrimary"
             android:drawableTop="@drawable/ic_favorites"
@@ -58,6 +61,7 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/activity_main_btn_about"
             style="@style/Theme.BrewDogApp.MenuButton"
             android:background="@color/colorPrimary"
             android:drawableTop="@drawable/ic_info"
