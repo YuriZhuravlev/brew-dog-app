@@ -3,7 +3,11 @@ package com.example.brewdogapp.activity
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.ListFragment
 import com.example.brewdogapp.R
+import com.example.brewdogapp.fragments.about.AboutFragment
+import com.example.brewdogapp.fragments.filters.FiltersFragment
 import com.example.brewdogapp.model.MainMenuItem
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
@@ -41,6 +45,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         if (previousItem != MainMenuItem.ABOUT) {
             getButton(previousItem).isEnabled = true
             mBtnAbout.isEnabled = false
+            replaceFragment(getFragment(MainMenuItem.ABOUT))
         }
     }
 
@@ -48,6 +53,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         if (previousItem != MainMenuItem.BEERS) {
             getButton(previousItem).isEnabled = true
             mBtnBeers.isEnabled = false
+            replaceFragment(getFragment(MainMenuItem.BEERS))
         }
     }
 
@@ -55,6 +61,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         if (previousItem != MainMenuItem.FAVORITES) {
             getButton(previousItem).isEnabled = true
             mBtnFavorites.isEnabled = false
+            replaceFragment(getFragment(MainMenuItem.FAVORITES))
         }
     }
 
@@ -62,11 +69,13 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         if (previousItem != MainMenuItem.FILTERS) {
             getButton(previousItem).isEnabled = true
             mBtnFilters.isEnabled = false
+            replaceFragment(getFragment(MainMenuItem.FILTERS))
         }
     }
 
     override fun onResume(item: MainMenuItem) {
         getButton(item).isEnabled = false
+        replaceFragment(getFragment(item), false)
     }
 
     private fun getButton(item: MainMenuItem): Button {
@@ -75,6 +84,28 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
             MainMenuItem.FILTERS -> mBtnFilters
             MainMenuItem.FAVORITES -> mBtnFavorites
             MainMenuItem.ABOUT -> mBtnAbout
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+        if (addToBackStack) {
+            supportFragmentManager.beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.fragment_container, fragment)
+                .commit()
+        } else {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit()
+        }
+    }
+
+    private fun getFragment(item: MainMenuItem): Fragment {
+        return when (item) {
+            MainMenuItem.BEERS -> ListFragment()
+            MainMenuItem.FILTERS -> FiltersFragment()
+            MainMenuItem.FAVORITES -> ListFragment()
+            MainMenuItem.ABOUT -> AboutFragment()
         }
     }
 }

@@ -22,7 +22,7 @@ class ListFragment() : MvpAppCompatFragment(R.layout.fragment_list), IListView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v = inflater.inflate(R.layout.fragment_list, container)
+        val v = inflater.inflate(R.layout.fragment_list, container, false)
         mRecyclerView = v.findViewById(R.id.list_recycler_view)
         mRecyclerView.adapter
         return v

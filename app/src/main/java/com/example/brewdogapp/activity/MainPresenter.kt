@@ -6,7 +6,7 @@ import moxy.MvpPresenter
 
 @InjectViewState
 class MainPresenter : MvpPresenter<IMainView>() {
-    var currentItem = MainMenuItem.BEERS
+    var currentItem = MainMenuItem.ABOUT
 
     fun clickBtnAbout(item: MainMenuItem) {
         viewState.clickBtnAbout(currentItem)
