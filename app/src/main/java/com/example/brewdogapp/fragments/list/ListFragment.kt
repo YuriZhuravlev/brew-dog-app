@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brewdogapp.R
 import com.example.brewdogapp.fragments.list.adapter.BeerListAdapter
@@ -11,7 +12,7 @@ import com.example.brewdogapp.model.Beer
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 
-class ListFragment() : MvpAppCompatFragment(R.layout.fragment_list), IListView {
+class ListFragment : MvpAppCompatFragment(), IListView {
     @InjectPresenter
     lateinit var mPresenter: ListPresenter
 
@@ -24,7 +25,6 @@ class ListFragment() : MvpAppCompatFragment(R.layout.fragment_list), IListView {
     ): View? {
         val v = inflater.inflate(R.layout.fragment_list, container, false)
         mRecyclerView = v.findViewById(R.id.list_recycler_view)
-        mRecyclerView.adapter
         return v
     }
 
@@ -36,5 +36,9 @@ class ListFragment() : MvpAppCompatFragment(R.layout.fragment_list), IListView {
     override fun initRecyclerView(list: List<Beer>) {
         val adapter = BeerListAdapter(list)
         mRecyclerView.adapter = adapter
+    }
+
+    override fun error(message: String?) {
+        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
 }

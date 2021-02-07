@@ -11,13 +11,13 @@ data class Beer(
     val firstBrewed: String? = null,
 
     @field:SerializedName("attenuation_level")
-    val attenuationLevel: Int? = null,
+    val attenuationLevel: Double? = null,
 
     @field:SerializedName("method")
     val method: Method? = null,
 
     @field:SerializedName("target_og")
-    val targetOg: Int? = null,
+    val targetOg: Double? = null,
 
     @field:SerializedName("image_url")
     val imageUrl: String? = null,
@@ -26,16 +26,16 @@ data class Beer(
     val boilVolume: BoilVolume? = null,
 
     @field:SerializedName("ebc")
-    val ebc: Int? = null,
+    val ebc: Double? = null,
 
     @field:SerializedName("description")
     val description: String? = null,
 
     @field:SerializedName("target_fg")
-    val targetFg: Int? = null,
+    val targetFg: Double? = null,
 
     @field:SerializedName("srm")
-    val srm: Int? = null,
+    val srm: Double? = null,
 
     @field:SerializedName("volume")
     val volume: Volume? = null,
@@ -66,10 +66,40 @@ data class Beer(
     val id: Int? = null,
 
     @field:SerializedName("ibu")
-    val ibu: Int? = null,
+    val ibu: Double? = null,
 
     @field:SerializedName("brewers_tips")
     val brewersTips: String? = null
+)
+
+data class Temp(
+
+    @field:SerializedName("unit")
+    val unit: String? = null,
+
+    @field:SerializedName("value")
+    val value: Int? = null
+)
+
+data class Ingredients(
+
+    @field:SerializedName("hops")
+    val hops: List<HopsItem?>? = null,
+
+    @field:SerializedName("yeast")
+    val yeast: String? = null,
+
+    @field:SerializedName("malt")
+    val malt: List<MaltItem?>? = null
+)
+
+data class Volume(
+
+    @field:SerializedName("unit")
+    val unit: String? = null,
+
+    @field:SerializedName("value")
+    val value: Int? = null
 )
 
 data class HopsItem(
@@ -87,15 +117,6 @@ data class HopsItem(
     val attribute: String? = null
 )
 
-data class MashTempItem(
-
-    @field:SerializedName("duration")
-    val duration: Int? = null,
-
-    @field:SerializedName("temp")
-    val temp: Temp? = null
-)
-
 data class Method(
 
     @field:SerializedName("mash_temp")
@@ -108,6 +129,21 @@ data class Method(
     val twist: Any? = null
 )
 
+data class Fermentation(
+
+    @field:SerializedName("temp")
+    val temp: Temp? = null
+)
+
+data class MashTempItem(
+
+    @field:SerializedName("duration")
+    val duration: Int? = null,
+
+    @field:SerializedName("temp")
+    val temp: Temp? = null
+)
+
 data class BoilVolume(
 
     @field:SerializedName("unit")
@@ -115,30 +151,6 @@ data class BoilVolume(
 
     @field:SerializedName("value")
     val value: Int? = null
-)
-
-data class Temp(
-
-    @field:SerializedName("unit")
-    val unit: String? = null,
-
-    @field:SerializedName("value")
-    val value: Int? = null
-)
-
-data class Volume(
-
-    @field:SerializedName("unit")
-    val unit: String? = null,
-
-    @field:SerializedName("value")
-    val value: Int? = null
-)
-
-data class Fermentation(
-
-    @field:SerializedName("temp")
-    val temp: Temp? = null
 )
 
 data class Amount(
@@ -157,16 +169,4 @@ data class MaltItem(
 
     @field:SerializedName("name")
     val name: String? = null
-)
-
-data class Ingredients(
-
-    @field:SerializedName("hops")
-    val hops: List<HopsItem?>? = null,
-
-    @field:SerializedName("yeast")
-    val yeast: String? = null,
-
-    @field:SerializedName("malt")
-    val malt: List<MaltItem?>? = null
 )

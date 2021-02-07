@@ -9,12 +9,13 @@ import moxy.MvpPresenter
 @InjectViewState
 class ListPresenter : MvpPresenter<IListView>() {
     fun initList() {
-        getApiService().getAllBeers(1).subscribeOn(Schedulers.io())
+        getApiService().getAllBeers(1)
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 viewState.initRecyclerView(it)
             }, {
-                println(it.message)
+                viewState.error(it.message)
             })
     }
 }

@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.ListFragment
 import com.example.brewdogapp.R
 import com.example.brewdogapp.fragments.about.AboutFragment
 import com.example.brewdogapp.fragments.filters.FiltersFragment
+import com.example.brewdogapp.fragments.list.ListFragment
 import com.example.brewdogapp.model.MainMenuItem
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter

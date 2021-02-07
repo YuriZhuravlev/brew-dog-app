@@ -10,7 +10,7 @@ class BeerListAdapter(list: List<Beer>) : RecyclerView.Adapter<BeerViewHolder>()
     private val mList = list.toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_beer, parent)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_beer, parent, false)
         return BeerViewHolder(view)
     }
 
