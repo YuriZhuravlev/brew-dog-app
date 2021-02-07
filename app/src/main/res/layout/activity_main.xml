@@ -30,26 +30,24 @@
         android:layout_height="70dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/colorPrimary">
 
         <Button
             android:id="@+id/activity_main_btn_beers"
             style="@style/Theme.BrewDogApp.MenuButton"
-            android:background="@color/colorPrimary"
             android:drawableTop="@drawable/ic_info"
             android:text="@string/beers" />
 
         <Button
             android:id="@+id/activity_main_btn_filters"
             style="@style/Theme.BrewDogApp.MenuButton"
-            android:background="@color/colorPrimary"
             android:drawableTop="@drawable/ic_filters"
             android:text="@string/filters" />
 
         <Button
             android:id="@+id/activity_main_btn_favorites"
             style="@style/Theme.BrewDogApp.MenuButton"
-            android:background="@color/colorPrimary"
             android:drawableTop="@drawable/ic_favorites"
             android:text="@string/favorites"
             android:textAllCaps="false" />
@@ -57,7 +55,6 @@
         <Button
             android:id="@+id/activity_main_btn_about"
             style="@style/Theme.BrewDogApp.MenuButton"
-            android:background="@color/colorPrimary"
             android:drawableTop="@drawable/ic_info"
             android:text="@string/about" />
     </LinearLayout>
