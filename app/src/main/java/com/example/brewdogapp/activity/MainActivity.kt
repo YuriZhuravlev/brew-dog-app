@@ -34,10 +34,10 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
 
     override fun onResume() {
         super.onResume()
-        mBtnAbout.setOnClickListener { mPresenter.clickBtnAbout(MainMenuItem.ABOUT) }
-        mBtnBeers.setOnClickListener { mPresenter.clickBtnBeers(MainMenuItem.BEERS) }
-        mBtnFavorites.setOnClickListener { mPresenter.clickBtnFavorites(MainMenuItem.FAVORITES) }
-        mBtnFilters.setOnClickListener { mPresenter.clickBtnFilters(MainMenuItem.FILTERS) }
+        mBtnAbout.setOnClickListener { mPresenter.clickBtnAbout() }
+        mBtnBeers.setOnClickListener { mPresenter.clickBtnBeers() }
+        mBtnFavorites.setOnClickListener { mPresenter.clickBtnFavorites() }
+        mBtnFilters.setOnClickListener { mPresenter.clickBtnFilters() }
         mPresenter.resume()
     }
 
@@ -45,7 +45,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         if (previousItem != MainMenuItem.ABOUT) {
             getButton(previousItem).isEnabled = true
             mBtnAbout.isEnabled = false
-            replaceFragment(getFragment(MainMenuItem.ABOUT))
+            replaceFragment(MainMenuItem.ABOUT)
         }
     }
 
@@ -53,7 +53,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         if (previousItem != MainMenuItem.BEERS) {
             getButton(previousItem).isEnabled = true
             mBtnBeers.isEnabled = false
-            replaceFragment(getFragment(MainMenuItem.BEERS))
+            replaceFragment(MainMenuItem.BEERS)
         }
     }
 
@@ -61,7 +61,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         if (previousItem != MainMenuItem.FAVORITES) {
             getButton(previousItem).isEnabled = true
             mBtnFavorites.isEnabled = false
-            replaceFragment(getFragment(MainMenuItem.FAVORITES))
+            replaceFragment(MainMenuItem.FAVORITES)
         }
     }
 
@@ -69,13 +69,18 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         if (previousItem != MainMenuItem.FILTERS) {
             getButton(previousItem).isEnabled = true
             mBtnFilters.isEnabled = false
-            replaceFragment(getFragment(MainMenuItem.FILTERS))
+            replaceFragment(MainMenuItem.FILTERS)
         }
     }
 
     override fun onResume(item: MainMenuItem) {
         getButton(item).isEnabled = false
-        replaceFragment(getFragment(item), false)
+        replaceFragment(item, false)
+    }
+
+    override fun backPressed(item: MainMenuItem, previousItem: MainMenuItem) {
+        getButton(item).isEnabled = true
+        getButton(previousItem).isEnabled = false
     }
 
     private fun getButton(item: MainMenuItem): Button {
@@ -87,17 +92,22 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+    private fun replaceFragment(item: MainMenuItem, addToBackStack: Boolean = true) {
         if (addToBackStack) {
             supportFragmentManager.beginTransaction()
-                .addToBackStack(null)
-                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(item.name)
+                .replace(R.id.fragment_container, getFragment(item))
                 .commit()
         } else {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
+                .replace(R.id.fragment_container, getFragment(item))
                 .commit()
         }
+    }
+
+    override fun onBackPressed() {
+        mPresenter.backPressed()
+        super.onBackPressed()
     }
 
     private fun getFragment(item: MainMenuItem): Fragment {

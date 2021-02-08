@@ -11,4 +11,5 @@ interface IMainView : MvpView {
     fun clickBtnFavorites(previousItem: MainMenuItem)
     fun clickBtnFilters(previousItem: MainMenuItem)
     fun onResume(item: MainMenuItem)
+    fun backPressed(item: MainMenuItem, previousItem: MainMenuItem)
 }

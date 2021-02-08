@@ -3,32 +3,38 @@ package com.example.brewdogapp.activity
 import com.example.brewdogapp.model.MainMenuItem
 import moxy.InjectViewState
 import moxy.MvpPresenter
+import java.util.*
 
 @InjectViewState
 class MainPresenter : MvpPresenter<IMainView>() {
-    var currentItem = MainMenuItem.BEERS
+    private val mItemStack = Stack<MainMenuItem>()
 
-    fun clickBtnAbout(item: MainMenuItem) {
-        viewState.clickBtnAbout(currentItem)
-        currentItem = item
+    fun clickBtnAbout() {
+        viewState.clickBtnAbout(mItemStack.peek())
+        mItemStack.add(MainMenuItem.ABOUT)
     }
 
-    fun clickBtnBeers(item: MainMenuItem) {
-        viewState.clickBtnBeers(currentItem)
-        currentItem = item
+    fun clickBtnBeers() {
+        viewState.clickBtnBeers(mItemStack.peek())
+        mItemStack.add(MainMenuItem.BEERS)
     }
 
-    fun clickBtnFavorites(item: MainMenuItem) {
-        viewState.clickBtnFavorites(currentItem)
-        currentItem = item
+    fun clickBtnFavorites() {
+        viewState.clickBtnFavorites(mItemStack.peek())
+        mItemStack.add(MainMenuItem.FAVORITES)
     }
 
-    fun clickBtnFilters(item: MainMenuItem) {
-        viewState.clickBtnFilters(currentItem)
-        currentItem = item
+    fun clickBtnFilters() {
+        viewState.clickBtnFilters(mItemStack.peek())
+        mItemStack.add(MainMenuItem.FILTERS)
     }
 
     fun resume() {
-        viewState.onResume(currentItem)
+        mItemStack.add(MainMenuItem.BEERS)
+        viewState.onResume(mItemStack.peek())
+    }
+
+    fun backPressed() {
+        viewState.backPressed(mItemStack.pop(), mItemStack.peek())
     }
 }
